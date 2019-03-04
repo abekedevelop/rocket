@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e368f9cc-2e07-4efd-92a1-d2f270fb287a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-    </list>
+    <list default="true" id="e368f9cc-2e07-4efd-92a1-d2f270fb287a" name="Default" comment="production test" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -285,7 +281,7 @@
       <workItem from="1551630637451" duration="3119000" />
       <workItem from="1551661512235" duration="6878000" />
       <workItem from="1551672061814" duration="135000" />
-      <workItem from="1551672289299" duration="20702000" />
+      <workItem from="1551672289299" duration="21344000" />
     </task>
     <task id="LOCAL-00001" summary="search photo by id fix">
       <created>1551672169468</created>
@@ -312,7 +308,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116599000" />
+    <option name="totallyTimeSpent" value="117241000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1006" extended-state="6" />

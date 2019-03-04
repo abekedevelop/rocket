@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `gimmepic` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `gimmepic`;
 -- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: gimmepic
@@ -30,7 +32,7 @@ CREATE TABLE `app_queries` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +41,7 @@ CREATE TABLE `app_queries` (
 
 LOCK TABLES `app_queries` WRITE;
 /*!40000 ALTER TABLE `app_queries` DISABLE KEYS */;
+INSERT INTO `app_queries` VALUES (1,'word','game','{\"total_pages\":1072,\"total\":16077,\"0\":{\"image_id\":\"Yc409-8V2pU\",\"image_description\":\"green, red, and yellow dartboard\",\"user_id\":\"OvQxVC3Gzdc\",\"user_name\":\"Marc\",\"user_last_name\":\"A\",\"user_location\":\"Pennsylvania\",\"instagram_username\":null},\"1\":{\"image_id\":\"TL5Vy1IM-uA\",\"image_description\":\"blue building block lot\",\"user_id\":\"9SWqqMsaZJ4\",\"user_name\":\"Iker\",\"user_last_name\":\"Urteaga\",\"user_location\":\"Donostia\",\"instagram_username\":\"iurte\"},\"2\":{\"image_id\":\"n25oD0d4oiI\",\"image_description\":\"grayscale photography of chess board game\",\"user_id\":\"ScGfk-8lW0M\",\"user_name\":\"rawpixel\",\"user_last_name\":null,\"user_location\":null,\"instagram_username\":\"byrawpixel\"},\"3\":{\"image_id\":\"FihBUk245ys\",\"image_description\":\"brown and black chess board on brown wooden table\",\"user_id\":\"buplzvuG2JU\",\"user_name\":\"Alex\",\"user_last_name\":\"Holyoake\",\"user_location\":\"Wolverhampton, England\",\"instagram_username\":\"_therealalex_\"},\"4\":{\"image_id\":\"gUpbcU58B70\",\"image_description\":\"person shaking hands on top of chessboard\",\"user_id\":\"ScGfk-8lW0M\",\"user_name\":\"rawpixel\",\"user_last_name\":null,\"user_location\":null,\"instagram_username\":\"byrawpixel\"},\"5\":{\"image_id\":\"43LcbfI-tok\",\"image_description\":\"person holding fan of playing cards\",\"user_id\":\"SZrU113UcpY\",\"user_name\":\"Alessandro\",\"user_last_name\":\"Bogliari\",\"user_location\":null,\"instagram_username\":\"alexeidos\"},\"6\":{\"image_id\":\"9pUKzChp0wQ\",\"image_description\":\"person playing chess\",\"user_id\":\"ScGfk-8lW0M\",\"user_name\":\"rawpixel\",\"user_last_name\":null,\"user_location\":null,\"instagram_username\":\"byrawpixel\"},\"7\":{\"image_id\":\"4UZBd5Zw56U\",\"image_description\":\"white and black area rug\",\"user_id\":\"-dPh7PQ6zcM\",\"user_name\":\"Denise\",\"user_last_name\":\"Jans\",\"user_location\":\"Auckland\",\"instagram_username\":\"dmjdenise\"},\"8\":{\"image_id\":\"vBpd607jLXs\",\"image_description\":\"person sitting near poker chips\",\"user_id\":\"vm7k_1iG2Jw\",\"user_name\":\"Chris\",\"user_last_name\":\"Liverani\",\"user_location\":\"Montreal, QC\",\"instagram_username\":null},\"9\":{\"image_id\":\"T35fIhhUK1c\",\"image_description\":null,\"user_id\":\"u6wK3fKo1ek\",\"user_name\":\"Sheldon\",\"user_last_name\":\"Nunes\",\"user_location\":\"Auckland, New Zealand\",\"instagram_username\":\"sheldon.nunes.photography\"},\"10\":{\"image_id\":\"EvGwPnK6apM\",\"image_description\":\"queen and king chess pieces on board\",\"user_id\":\"EqNzOOw_bKQ\",\"user_name\":\"Shirly\",\"user_last_name\":\"Niv Marton\",\"user_location\":null,\"instagram_username\":\"shirlymarton\"},\"11\":{\"image_id\":\"jD6eRgBpE0c\",\"image_description\":\"two person playing chess on park\",\"user_id\":\"xRQG0dqFf2E\",\"user_name\":\"AP x 90\",\"user_last_name\":null,\"user_location\":\"Toronto, Canada\",\"instagram_username\":null},\"12\":{\"image_id\":\"A7uCrrk5FG0\",\"image_description\":\"dart on dartboard\",\"user_id\":\"oj1g69gCyF8\",\"user_name\":\"Imke\",\"user_last_name\":\"van Loon-Martens\",\"user_location\":null,\"instagram_username\":\"imkemar\"},\"13\":{\"image_id\":\"sXN_iWRc214\",\"image_description\":\"person writing on music score sheet\",\"user_id\":\"ScGfk-8lW0M\",\"user_name\":\"rawpixel\",\"user_last_name\":null,\"user_location\":null,\"instagram_username\":\"byrawpixel\"},\"14\":{\"image_id\":\"oT-XbATcoTQ\",\"image_description\":\"person playing poker\",\"user_id\":\"4HraACy4gPg\",\"user_name\":\"Micha\\u0142\",\"user_last_name\":\"Parzuchowski\",\"user_location\":\"Gda\\u0144sk, Poland\",\"instagram_username\":\"m.parzuchowski\"}}','2019-03-04 11:34:10','2019-03-04 11:34:10'),(2,'id','43LcbfI-tok','[{\"id\":\"43LcbfI-tok\",\"description\":\"person holding fan of playing cards\",\"user_id\":\"SZrU113UcpY\",\"user_first_name\":\"Alessandro\",\"user_last_name\":\"Bogliari\",\"user_location\":null,\"instagram_username\":\"alexeidos\",\"twitter_username\":\"alexeidos\"}]','2019-03-04 11:34:12','2019-03-04 11:34:12');
 /*!40000 ALTER TABLE `app_queries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-04 17:22:37
+-- Dump completed on 2019-03-04 17:46:13
