@@ -11,8 +11,9 @@ class CreateAppQueriesTable extends Migration
     {
         Schema::create('app_queries', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('type');
             $table->string('search_query');
-            $table->string('query_result');
+            $table->longText('query_result');
             $table->timestamps();
         });
     }

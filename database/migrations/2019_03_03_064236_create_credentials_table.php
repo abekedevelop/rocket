@@ -17,7 +17,7 @@ class CreateCredentialsTable extends Migration
             $table->bigIncrements('id');
             $table->string('app_name');
             $table->string('client_id')->unique();
-            $table->string('state')->unique();
+            $table->string('state')->default(1);
             $table->timestamps();
         });
     }

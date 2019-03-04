@@ -15,7 +15,7 @@ export default new Router({
             component: EntryPoint
         },
         {
-            path: '/single',
+            path: '/photo/:id',
             name: 'SinglePhoto',
             component: SinglePhoto
         },

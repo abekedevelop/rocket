@@ -1851,9 +1851,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['setChosenPhoto', 'setImages', 'setSearchWord', 'setCurrentPage', 'setTotalPages']), {
-    setPhoto: function setPhoto(image) {
-      this.setChosenPhoto(image);
-      this.$router.push('single');
+    setPhoto: function setPhoto(id) {
+      this.$router.push('/photo/' + id);
     },
     search: function search() {
       var _this = this;
@@ -1883,7 +1882,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       this.setCurrentPage(this.pageNum);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/search-by-word', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/search-photos', {
         params: {
           term: this.searchWord,
           pageNum: this.pageNum
@@ -1986,6 +1985,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2015,9 +2016,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SinglePhoto",
+  data: function data() {
+    return {
+      // id: this.$route.params.id,
+      photo: false
+    };
+  },
   methods: {
     copy: function copy() {
       var text = $('#share');
@@ -2026,17 +2036,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       M.toast({
         html: 'copied'
       });
+    },
+    searchPhotoById: function searchPhotoById() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/get-photo-by-id', {
+        params: {
+          photoId: this.id
+        }
+      }).then(function (response) {
+        console.log(response);
+        _this.photo = response.data.photo;
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
-    photo: function photo(state) {
-      return state.chosenPhoto;
+  computed: _objectSpread({
+    id: function id() {
+      return this.$route.params.id;
     }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({// photo: state => state.chosenPhoto
   }), {
     isSocial: function isSocial() {
       return this.photo.user.instagram_username !== null && this.photo.user.instagram_username !== '';
     }
-  })
+  }),
+  watch: {
+    id: function id(val) {
+      console.log(val);
+      this.searchPhotoById(val);
+    }
+  },
+  mounted: function mounted() {
+    this.searchPhotoById(this.id);
+  }
 });
 
 /***/ }),
@@ -50409,7 +50443,7 @@ var render = function() {
               staticClass: "card col",
               on: {
                 click: function($event) {
-                  return _vm.setPhoto(image)
+                  return _vm.setPhoto(image.id)
                 }
               }
             },
@@ -50566,54 +50600,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "single-photo" } }, [
     _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col s12" }, [
-          _c("h5", { staticClass: "author" }, [
-            _vm._v("Author: "),
-            _c("img", {
-              staticClass: " circle responsive-img",
-              attrs: { src: _vm.photo.user.profile_image.small }
-            }),
-            _vm._v(" " + _vm._s(_vm.photo.user.name))
-          ]),
-          _vm._v(" "),
-          _vm.isSocial
-            ? _c("div", { staticClass: "social" }, [
-                _c("i", { staticClass: "fab fa-instagram fa-lg" }),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href:
-                        "https://www.instagram.com/" +
-                        _vm.photo.user.instagram_username,
-                      target: "_blank"
-                    }
-                  },
-                  [_vm._v("Follow on Instagram")]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "copy" }, [
-            _c("button", { staticClass: "btn", on: { click: _vm.copy } }, [
-              _vm._v("Copy link")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "text", id: "share" },
-              domProps: { value: _vm.photo.links.html }
-            })
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col s12" }, [
-          _c("img", { attrs: { src: _vm.photo.urls.regular, alt: "image" } })
-        ])
-      ])
+      _c("h1", [_vm._v(_vm._s(_vm.id))])
     ])
   ])
 }
@@ -66851,7 +66838,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'EntryPoint',
     component: _components_EntryPoint__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
-    path: '/single',
+    path: '/photo/:id',
     name: 'SinglePhoto',
     component: _components_SinglePhoto__WEBPACK_IMPORTED_MODULE_3__["default"]
   }]

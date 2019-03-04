@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\helpers;
 
-use Illuminate\Http\Request;
 use App\models\Credentials;
 
-class CredKeeper extends Controller
+class CredKeeper
 {
     private static $clientData = [
         'clientId' => '',

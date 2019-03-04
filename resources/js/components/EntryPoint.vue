@@ -20,7 +20,7 @@
         </div>
         <div class="row">
             <div class="col s12">
-                <div class="card col" v-for="image in images" :key="image.key" @click="setPhoto(image)">
+                <div class="card col" v-for="image in images" :key="image.key" @click="setPhoto(image.id)">
                     <div class="card-image">
                         <img class="responsive-img" width="650" :src="image.urls.small">
                         <span class="card-title action">
@@ -54,9 +54,8 @@ export default {
     },
     methods: {
         ...mapActions(['setChosenPhoto', 'setImages', 'setSearchWord', 'setCurrentPage', 'setTotalPages']),
-        setPhoto (image) {
-            this.setChosenPhoto(image)
-            this.$router.push('single')
+        setPhoto (id) {
+            this.$router.push('/photo/' + id)
         },
         search (move = false) {
 
@@ -82,7 +81,7 @@ export default {
             }
             this.setCurrentPage(this.pageNum)
 
-            axios.get('/api/search-by-word', {
+            axios.get('/api/search-photos', {
                 params: {
                     term: this.searchWord,
                     pageNum: this.pageNum

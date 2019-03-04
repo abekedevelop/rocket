@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\modules\Search\SearchById;
-use App\modules\Search\SearchByWord;
+use App\modules\Search\SearchPhotoById;
+use App\modules\Search\SearchPhotoByWord;
 use Illuminate\Http\Request;
 
 class RequestController extends Controller
 {
 
-    public function searchByWord (Request $request) {
+    public function searchPhotos (Request $request) {
         try {
             $term = $request->query('term');
             $pageNum = $request->query('pageNum');
 
-            if (trim($pageNum) === '') {
+            if (trim($term) === '') {
                 return [
                     'status' => 'error',
                     'message' => 'Could not obtain any search criteria'
                 ];
             }
 
-            $search = new SearchByWord();
+            $search = new SearchPhotoByWord();
 
-            return $search->searchByWord($term, $pageNum);
+            return $search->search($term, $pageNum);
 
         } catch (\Exception $e) {
             echo $e;
@@ -31,10 +31,10 @@ class RequestController extends Controller
         }
     }
 
-    public function searchById (Request $request) {
+    public function searchPhotoById (Request $request) {
         try {
             $id = $request->query('photoId');
-            $search = new SearchById();
+            $search = new SearchPhotoById();
 
             return $search->searchById($id);
         } catch(\Exception $err) {
