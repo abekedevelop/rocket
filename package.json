@@ -13,7 +13,6 @@
     "axios": "^0.18",
     "bootstrap": "^4.0.0",
     "cross-env": "^5.1",
-    "jquery": "^3.2",
     "laravel-mix": "^4.0.7",
     "lodash": "^4.17.5",
     "node-sass": "^4.11.0",
@@ -26,9 +25,14 @@
     "vue-template-compiler": "^2.6.8"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.2",
     "axios": "^0.18.0",
+    "jquery": "^1.9.1",
+    "jssocials": "^1.5.0",
     "materialize-css": "^1.0.0-rc.2",
+    "resolve-url-loader": "^2.3.2",
     "vue-router": "^3.0.2",
+    "vue-social-sharing": "^2.4.2",
     "vuex": "^3.1.0"
   }
 }

@@ -20,7 +20,7 @@
         </div>
         <div class="row">
             <div class="col s12">
-                <div class="card col" v-for="image in images" :key="image.key" @click="setPhoto(image.id)">
+                <div class="card col s4" v-for="image in images" :key="image.key" @click="setPhoto(image.id)">
                     <div class="card-image">
                         <img class="responsive-img" width="650" :src="image.urls.small">
                         <span class="card-title action">

@@ -11,6 +11,12 @@ import store from './store/store'
 import M from 'materialize-css'
 import 'materialize-css/dist/js/materialize.min'
 import 'materialize-css/dist/css/materialize.min.css'
+import 'vue-social-sharing/dist/vue-social-sharing.min'
+
+let SocialSharing = require('vue-social-sharing');
+
+Vue.use(SocialSharing)
+
 Vue.use(M)
 
 new Vue({

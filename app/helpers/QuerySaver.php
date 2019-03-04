@@ -17,27 +17,48 @@ class QuerySaver
         $model = new AppQueries();
         $model->type = $type;
         $model->search_query = $query;
-        $parsedData = self::parse($data);
+        $parsedData = self::parse($type, $data);
         $model->query_result = $parsedData;
         $model->save();
     }
 
-    private function parse ($data) :string {
-        $parsedData = [
-//            'total_pages' => $data['total_pages'],
-//            'total' => $data['total']
-        ];
+    private function parse ($type, $data) :string {
+        $parsedData = [];
+        if ($type === 'word') {
+            $parsedData = [
+                'total_pages' => $data['total_pages'],
+                'total' => $data['total']
+            ];
 
-        // saving essential data only
-        foreach ($data['results'] as $item) {
+            // saving essential data only
+            foreach ($data['results'] as $item) {
+                $photo = [
+                    'image_id' => $item['id'],
+                    'image_description' => $item['description'],
+                    'user_id' => $item['user']['id'],
+                    'user_name' => $item['user']['first_name'],
+                    'user_last_name' => $item['user']['last_name'],
+                    'user_location' => $item['user']['location'],
+                    'instagram_username' => $item['user']['instagram_username']
+
+                ];
+                $parsedData[] = $photo;
+            }
+        }
+        if ($type === 'id') {
             $photo = [
-                'image_id' => $item['id'],
-                'image_description' => $item['description'],
-                'user_id' => $item['user']['id'],
-                'user_name' => $item['user']['name']
+                'id' => $data['id'],
+                'description' => $data['description'],
+                'user_id' => $data['user']['id'],
+                'user_first_name' => $data['user']['first_name'],
+                'user_last_name' => $data['user']['last_name'],
+                'user_location' => $data['user']['location'],
+                'instagram_username' => $data['user']['instagram_username'],
+                'twitter_username' => $data['user']['twitter_username']
             ];
             $parsedData[] = $photo;
         }
+
         return json_encode($parsedData);
     }
 }

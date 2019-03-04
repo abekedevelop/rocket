@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: abk
- * Date: 3/3/19
- * Time: 9:02 PM
- */
 
 namespace App\modules\Search;
 
@@ -25,7 +19,7 @@ class SearchPhotoById
 
         $querySaver = new QuerySaver();
 
-        $querySaver->saveQueryData('word', $id, $result);
+        $querySaver->saveQueryData('id', $id, $result);
 
         return [
             'status' => 'success',

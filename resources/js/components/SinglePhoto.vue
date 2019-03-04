@@ -1,33 +1,40 @@
 <template>
     <div id="single-photo">
-        <div class="container">
-            <h1>{{ id }}</h1>
-            <!--<div class="row">-->
-                <!--<div class="col s12">-->
-                    <!--<h5 class="author">Author: <img class=" circle responsive-img" :src="photo.user.profile_image.small"> {{photo.user.name}}</h5>-->
-                    <!--<div class="social" v-if="isSocial">-->
-                        <!--<i class="fab fa-instagram fa-lg"></i>-->
-                        <!--<a :href="'https://www.instagram.com/' + photo.user.instagram_username" target="_blank">Follow on Instagram</a>-->
-                    <!--</div>-->
-                    <!--<div class="copy">-->
-                        <!--<button class="btn" @click="copy">Copy link</button>-->
-                        <!--<input type="text" :value=photo.links.html id="share">-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<h1>{{$route.params}}</h1>-->
-            <!--<div class="row">-->
-                <!--<div class="col s12">-->
-                    <!--<img :src="photo.urls.regular" alt="image">-->
-                <!--</div>-->
-            <!--</div>-->
+        <div class="container" v-if="photo !== false">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="author">Author: <img class=" circle responsive-img" :src="photo.user.profile_image.small"> {{photo.user.name}}</h5>
+                    <div class="social" v-if="isSocial">
+                        <i class="fab fa-instagram fa-lg"></i>
+                        <a :href="'https://www.instagram.com/' + photo.user.instagram_username" target="_blank">Follow on Instagram</a>
+                    </div>
+                    <div class="copy">
+                        <button class="btn" @click="copy">Copy link</button>
+                        <input type="text" :value="'gimmepic.com' + $route.fullPath" id="share">
+                    </div>
+                    <div id="social">
+                        <social :url="'http://gimmepic.com' + $route.fullPath"
+                                title="Awesome image by gimmepic.com"
+                                :media="'http://gimmepic.com' + $route.fullPath"
+                                :description="photo.description"
+                                hastags="unsplash.com"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <img :src="photo.urls.regular" alt="image">
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 import axios from 'axios'
+import Social from './Social'
 export default {
     name: "SinglePhoto",
     data () {
@@ -36,7 +43,11 @@ export default {
             photo: false
         }
     },
+    components: {
+        Social
+    },
     methods: {
+        ...mapActions(['setChosenPhoto']),
         copy () {
             let text = $('#share')
             text.select()
@@ -51,11 +62,20 @@ export default {
                     photoId: this.id
                 }
             }).then(response => {
-                console.log(response)
-                this.photo = response.data.photo
+                if (response.data.status === 'success') {
+                    this.setChosenPhoto(response.data.data)
+                    this.photo = response.data.data
+                } else {
+                    M.toast({
+                        html: 'Error occurred or image not found.'
+                    })
+                }
             }).catch(error => {
                 console.log(error)
             })
+        },
+        open() {
+            alert('KASTA!!!')
         }
     },
     computed: {
@@ -71,7 +91,6 @@ export default {
     },
     watch: {
         id (val) {
-            console.log(val)
             this.searchPhotoById(val)
         }
     },
